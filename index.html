@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deployment Practice</title>
     <link rel="stylesheet" type="text/css" href="/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 </head>
     <header>
         <h1>Hello World</h1>
     </header>
     <section id="text-box">
-        <button id="click-me">Click Me</button> 
+        <button id="click-me">Fail Button</button> 
         <p id="text">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type 
@@ -33,6 +34,19 @@
         </p>        
     </section>
 <body>
-    <script src="script.js"></script>
+    <script>
+        const failBtn = document.querySelector("button")
+
+        function failed(e){
+            e.preventDefault()
+            axios.get('/api/button').then(res => {
+                alert("you failed")
+            })
+        }
+
+        failBtn.addEventListener('click', failed)
+
+
+    </script>
 </body>
 </html>

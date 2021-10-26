@@ -20,6 +20,10 @@ app.get('/css', function(req, res) {
     res.sendFile(path.join(__dirname, '/styles.css'))
 })
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/api/button'))
+    rollbar.error("button clicked")
+})
 
 app.use(rollbar.errorHandler())
 
