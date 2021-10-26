@@ -20,9 +20,14 @@ app.get('/css', function(req, res) {
     res.sendFile(path.join(__dirname, '/styles.css'))
 })
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/api/button'))
-    rollbar.error("button clicked")
+app.get('/testing', function(req, res) {
+    try {
+        nonExistentFunction();
+      } catch (error) {
+        rollbar.error("failed");
+        // expected output: ReferenceError: nonExistentFunction is not defined
+        // Note - error messages will vary depending on browser
+      }
 })
 
 app.use(rollbar.errorHandler())
