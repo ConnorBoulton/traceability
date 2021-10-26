@@ -13,7 +13,7 @@ app.use(express.json())
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/index.html'))
-    Rollbar.info('html file success')
+    rollbar.info('html file success')
 })
 
 app.get('/css', function(req, res) {
