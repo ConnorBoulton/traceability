@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
     try {
         nonExistentFunction();
       } catch (error) {
-        console.error(error);
+        rollbar.error('failed status');
       }
     res.sendFile(path.join(__dirname, '/index.html'))
 })
