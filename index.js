@@ -30,6 +30,14 @@ app.get('/testing', function(req, res) {
       }
 })
 
+app.get('/critical', function(req, res) {
+    try {
+        nonExistentFunction();
+      } catch (error) {
+        rollbar.critical("ENDPOINT CRITICAL")
+      }
+})
+
 app.use(rollbar.errorHandler())
 
 
