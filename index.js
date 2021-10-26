@@ -20,6 +20,15 @@ app.get('/css', function(req, res) {
     res.sendFile(path.join(__dirname, '/styles.css'))
 })
 
+app.get('/', (req, res) => {
+    try {
+        nonExistentFunction();
+      } catch (error) {
+        console.error(error);
+      }
+    res.sendFile(path.join(__dirname, '/index.html'))
+})
+
 app.use(rollbar.errorHandler())
 
 
