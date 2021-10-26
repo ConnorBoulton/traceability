@@ -1,18 +1,26 @@
 const express = require('express')
 const path = require('path')
-// const Rollbar = require('rollbar')
+const Rollbar = require('rollbar')
+
+let rollbar = new Rollbar({
+    accessToken: 'c082d4da82ba456da5d5472a0d30d9ec',
+    captureUncaught: true,
+    captureUnhandledRejections: true
+})
 
 const app = express()
 app.use(express.json())
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/index.html'))
-    // Rollbar.info('html file success')
+    Rollbar.info('html file success')
 })
 
 app.get('/css', function(req, res) {
     res.sendFile(path.join(__dirname, '/styles.css'))
 })
+
+app.use(rollbar.errorHandler())
 
 
 const port = process.env.PORT || 4545
